@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.suhlob.hibernate.entity.Role" table="roles">
+        <id name="id" column="r_id" type="int">
+            <generator class="native"/>
+        </id>
+        <property name="title" column="title" type="string"/>
+        <set name="users" table="user_role" lazy="true">
+            <key>
+                <column name="r_id" not-null="true"/>
+            </key>
+            <many-to-many column="u_id" class="com.suhlob.hibernate.entity.User"/>
+        </set>
+    </class>
+</hibernate-mapping>
